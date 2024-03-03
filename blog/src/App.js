@@ -11,6 +11,7 @@ function App() {
   ]);
   let [cnt, cntFunc] = useState([0, 0, 0]);
   let [modalYN, setModal] = useState(false);
+  let [num, setNum] = useState(0);
 
   return (
     <div className="App">
@@ -46,6 +47,7 @@ function App() {
             <h4
               onClick={() => {
                 setModal(!modalYN);
+                setNum(i);
               }}
             >
               {title[i]}
@@ -65,7 +67,9 @@ function App() {
           </div>
         );
       })}
-      {modalYN == true ? <Modal title={title} titleFunc={titleFunc} /> : null}
+      {modalYN == true ? (
+        <Modal num={num} title={title} titleFunc={titleFunc} />
+      ) : null}
     </div>
   );
 }
@@ -73,7 +77,7 @@ function App() {
 const Modal = (props) => {
   return (
     <div className="modal">
-      <h4>{props.title[0]}</h4>
+      <h4>{props.title[props.num]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
       <button
